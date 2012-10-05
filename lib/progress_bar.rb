@@ -92,9 +92,13 @@ class ProgressBar
   end
 
   def render_bar
+    ceiling = (ratio * (bar_width - 2)).ceil
+    floor = ((1-ratio) * (bar_width - 2)).floor
+    ceiling = ceiling > 0 ? ceiling : 0
+    floor = floor > 0 ? floor : 0
     "[" +
-      "#" * (ratio * (bar_width - 2)).ceil +
-      " " * ((1-ratio) * (bar_width - 2)).floor +
+      "#" * ceiling +
+      " " * floor +
     "]"
   end
 
